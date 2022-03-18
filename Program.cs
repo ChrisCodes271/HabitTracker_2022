@@ -28,7 +28,7 @@ namespace HabitTracker
 
             try
             {
-                String sqlCreateTable = "CREATE TABLE WaterConsumed (id INT, bottlesdrank INT)"; //String created to store sql commands that creates a table. 
+                string sqlCreateTable = "CREATE TABLE WaterConsumed (id INT, bottlesdrank INT)"; //String created to store sql commands that creates a table. 
 
                 SQLiteCommand createTableCommand = new SQLiteCommand(sqlCreateTable, m_dbConnection); //Command created using our sql command string and connection object. 
 
@@ -38,28 +38,50 @@ namespace HabitTracker
             {
                 Console.WriteLine("Table Detected");
             }
-           
 
 
-            String sqlFirstInsert = "INSERT INTO WaterConsumed (id, bottlesdrank) values (1, 6)"; //These three sections all perform the same function. Creating an sql command to insert data. Then running them below. 
 
-            SQLiteCommand creatIdOneCommand = new SQLiteCommand(sqlFirstInsert, m_dbConnection);
 
-            String sqlSecondInsert = "INSERT INTO WaterConsumed (id, bottlesdrank) values (2, 4)";
 
-            SQLiteCommand creatIdTwoCommand = new SQLiteCommand(sqlSecondInsert, m_dbConnection);
+            Console.WriteLine("What day is it?");
+            string userDateInsert = Console.ReadLine(); //Store integer value from user to use later. 
+            Convert.ToInt32(userDateInsert);
 
-            String sqlThirdInsert = "INSERT INTO WaterConsumed (id, bottlesdrank) values (3, 7)";
 
-            SQLiteCommand creatIdThreeCommand = new SQLiteCommand(sqlThirdInsert, m_dbConnection);
+            Console.WriteLine("How many bottles of water did you drink?");
+            string userWaterInsert = Console.ReadLine();
+            Convert.ToInt32(userWaterInsert);
 
-            creatIdOneCommand.ExecuteNonQuery(); //These execute commands will not write over other ID's. Instead will generate new ones. (something to keep in mind) 
-            creatIdTwoCommand.ExecuteNonQuery();
-            creatIdThreeCommand.ExecuteNonQuery();
+            string newEntry = $"INSERT INTO WaterConsumed (id, bottlesdrank) values ({userDateInsert} , {userWaterInsert})"; //insert integer values from user requested information into SQL command to create new column with id and watervalue
 
-            String pullFromTable = "SELECT * FROM WaterConsumed";
+            SQLiteCommand sqlNewEntry = new SQLiteCommand(newEntry, m_dbConnection);
 
-            SQLiteCommand pullCommand = new SQLiteCommand(pullFromTable, m_dbConnection);
+            sqlNewEntry.ExecuteNonQuery();
+
+
+
+
+            //string sqlFirstInsert = "UPDATE WaterConsumed SET bottlesdrank = 3 WHERE  id = 1";  
+
+            //SQLiteCommand creatIdOneCommand = new SQLiteCommand(sqlFirstInsert, m_dbConnection);
+
+            //string sqlSecondInsert = "INSERT INTO WaterConsumed (id, bottlesdrank) values (2, 4)"; //This is an example of an insert command. 
+
+            //SQLiteCommand creatIdTwoCommand = new SQLiteCommand(sqlSecondInsert, m_dbConnection);
+
+            //string sqlThirdInsert = "INSERT INTO WaterConsumed (id, bottlesdrank) values (3, 7)";
+
+            //SQLiteCommand creatIdThreeCommand = new SQLiteCommand(sqlThirdInsert, m_dbConnection);
+
+            //creatIdOneCommand.ExecuteNonQuery(); //These execute commands will not write over other ID's. Instead will generate new ones. (something to keep in mind) 
+            //creatIdTwoCommand.ExecuteNonQuery();
+            //creatIdThreeCommand.ExecuteNonQuery();
+
+
+
+            string pullFromTable = "SELECT * FROM WaterConsumed";
+
+            SQLiteCommand pullCommand = new SQLiteCommand(pullFromTable, m_dbConnection); //Read values. 
 
             SQLiteDataReader reader = pullCommand.ExecuteReader();
 
@@ -73,26 +95,7 @@ namespace HabitTracker
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //Information added to test branching
 
 
 
