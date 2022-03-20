@@ -84,9 +84,7 @@ namespace HabitTracker
                                 string userDateInsert = Console.ReadLine();
                                 Convert.ToString(userDateInsert);
 
-                                Console.WriteLine("How many bottles of water did you drink?");
-                                string userWaterInsert = Console.ReadLine();
-                                
+                                string userWaterInsert;                                
                                 bool entryCheck = true;
 
                                 int number = 99999999; //Establishing value for number to be modified later. 
